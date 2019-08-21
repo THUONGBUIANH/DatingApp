@@ -32,6 +32,7 @@ namespace DatingApp_BE.Controllers
             _config = config;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
@@ -54,8 +55,8 @@ namespace DatingApp_BE.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState.GetErrorMessages());
+            // if (!ModelState.IsValid)
+            //     return BadRequest(ModelState.GetErrorMessages());
 
             var userFromLogin = await _authRepository.Login(userForLoginDto.Username, userForLoginDto.Password);
 
